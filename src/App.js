@@ -1,27 +1,55 @@
 // import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
-import InputValue from './Component/inputValue'
-import Item from './Component/item';
+// import InputValue from './Component/inputValue'
+// import Item from './Component/item';
 
 
 const App = () => {
-  const [addvalue, setAddValue] = useState(0);
+  const [text, setText] = useState('')
+  const [todo, setTodo] = useState([])
+
   const add = () => {
-    setAddValue(addvalue+1)
-    console.log(addvalue)
+    setText('');
+    let copyTodo = [...todo]
+    copyTodo.push(text)
+    setTodo(copyTodo)
+    console.log("추가", todo)
+  }
+  const del = (index) => {
+    let copyTodo = [...todo]
+    copyTodo.splice(index,1)
+    setTodo(copyTodo)
   }
 
-
-  return (
-    <div>
-      <p>0</p>
+  return(
+    <div className='div'>
+      <h1>To Do List</h1>
       <div>
-        <button  onClick={add}>+</button>
-        <button>-</button>
+        {
+          todo.map((item, index) => (
+            <div key={index}>
+              {item}
+              <button onClick={() => {del(index)
+              console.log("버튼", index)
+              }}>삭제</button>
+            </div>
+          ))
+        }
+
+        <br />
+        <input
+          type="text" 
+          value={text}
+          onChange={(e) => {setText(e.target.value)}}
+          placeholder='내용을 입력하시오'
+        />
+        <button onClick={() => add()}>추가</button>
       </div>
+
     </div>
   )
+  
 }
 
 export default App;

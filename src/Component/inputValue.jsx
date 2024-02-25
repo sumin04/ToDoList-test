@@ -5,10 +5,9 @@ function InputValue({save}) {
     const [text , setText] = useState('')
 
     const submit =(e)=>{
-            e.preventDefault();
-            save(text);
-            setText('');
-
+      e.preventDefault();
+      save(text);
+      setText('');
     }
 
     return (

@@ -18,12 +18,12 @@ code {
 }
 
 .div{
-  width: 80%;
+  /* width: 80%; */
   height: 600px;
   margin: 20px auto;
   text-align: center;
-  background-color: lightblue;
-  display: flex;
+  /* background-color: lightblue; */
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
 }

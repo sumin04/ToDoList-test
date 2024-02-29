@@ -1,0 +1,45 @@
+.div{
+    width: 23%;
+    height: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    border-radius: 15px;
+}
+.valueBox{
+    width: 300px;
+    margin: 4px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.inputBox{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input{
+    width: 297px;
+    height: 27px;
+    border: 0;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.input:focus{
+    outline: 1px solid #ff0000;
+}
+.btn{
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    color: black;
+    border: 1;
+    border-color: lightgray;
+    border-radius: 5px;
+    margin-left: 5px;
+}

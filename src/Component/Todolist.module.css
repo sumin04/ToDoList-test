@@ -1,5 +1,5 @@
 .div{
-    width: 23%;
+    width: 500px;
     height: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -12,10 +12,18 @@
     border-radius: 15px;
 }
 .valueBox{
-    width: 300px;
-    margin: 4px auto;
+    width: 402px;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+p{
+    text-align: left;
+    margin: 0 0 5px 5px;
+}
+input{
+    height: 20px;
 }
 .inputBox{
     height: 30px;
@@ -33,6 +41,12 @@
 .input:focus{
     outline: 1px solid #ff0000;
 }
+/* .inputItem{
+    width: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+} */
 .btn{
     width: 80px;
     height: 30px;

@@ -55,20 +55,14 @@ const Todolist = () => {
                         </div>
                         
                         <div>
-                            {/* <button className={styles.btn}
-                                onClick={() => {edit(index)
-                                console.log("수정", index)
-                            }}>수정</button> */}
-
                             <button className={styles.btn}
-                                onClick={() => toggleShow(!show)}
+                                onClick={() => {
+                                    toggleShow(!show)
+                                    edit(index)
+                                    console.log("수정/돌아가기", index)
+                                }}
                             >
-                                <p onClick={() => {edit(index)
-                                    console.log("수정/저장", index)
-                                }}>
-                                    {show ? "돌아가기" : "수정"}
-                                </p>
-                                {/* {show ? "저장" : "수정"} */}
+                                {show ? "돌아가기" : "수정"}
                             </button>
 
                             <button className={styles.btn} onClick={() => {del(index)

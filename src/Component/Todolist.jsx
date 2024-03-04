@@ -5,7 +5,8 @@ import styles from './Todolist.module.css';
 const Todolist = () => {
     const [text, setText] = useState('');
     const [todo, setTodo] = useState([]);
-    const [editTodo, setEditTodo] = useState('');
+    
+    // const [show, toggleShow] = useState(false);
 
     const add = () => {
         setText('');
@@ -19,12 +20,26 @@ const Todolist = () => {
         copyTodo.splice(index,1)
         setTodo(copyTodo)
     }
-    const edit = () => {
-        const edit = [...todo]
-        // edit[index].isEditing = false
-        // copyTodo.splice(index,1)
-        console.log('변경');
+    const edit = (index) => {
+        let copyTodo = [...todo]
+
+        // console.log('변경', todo);
+        console.log(copyTodo[index])
     }
+
+    // if(false) { //수정모드임 ㅅㄱ
+    //     return (
+    //         <div className={styles.edit}>
+    //             <input 
+    //             type="text"
+    //             placeholder='수정할 값 입력'
+    //             />
+    //             <button>적용</button>
+    //         </div>
+    //     );
+    // }
+
+    const [show, toggleShow] = useState(false);
 
     return (
         <div className={styles.div}>
@@ -35,13 +50,26 @@ const Todolist = () => {
                         {/* 나중에 문자열로 잘라보기 */}
                         <div>
                             <p>{item}</p>
-                            <input type="text" maxLength={10}/>
-                            <button>저장</button>
+                            {show && <input type='text'></input>}
+                            {show && <button>저장</button>}
                         </div>
+                        
                         <div>
-                            <button className={styles.btn} onClick={() => {edit(index)
-                            console.log("수정", index)
-                            }}>수정</button>
+                            {/* <button className={styles.btn}
+                                onClick={() => {edit(index)
+                                console.log("수정", index)
+                            }}>수정</button> */}
+
+                            <button className={styles.btn}
+                                onClick={() => toggleShow(!show)}
+                            >
+                                <p onClick={() => {edit(index)
+                                    console.log("수정/저장", index)
+                                }}>
+                                    {show ? "돌아가기" : "수정"}
+                                </p>
+                                {/* {show ? "저장" : "수정"} */}
+                            </button>
 
                             <button className={styles.btn} onClick={() => {del(index)
                             console.log("버튼", index)

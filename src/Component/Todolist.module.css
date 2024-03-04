@@ -1,3 +1,14 @@
+/* 수정 */
+.edit{
+    width: 300px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 기본 */
 .div{
     width: 500px;
     height: 600px;
@@ -11,6 +22,7 @@
     justify-content: space-between;
     border-radius: 15px;
 }
+/* {item}, 수정,삭제 box */
 .valueBox{
     width: 402px;
     margin: 20px auto;
@@ -31,6 +43,7 @@ input{
     align-items: center;
     justify-content: center;
 }
+/* 내용 입력 input */
 .input{
     width: 297px;
     height: 27px;
@@ -41,12 +54,6 @@ input{
 .input:focus{
     outline: 1px solid #ff0000;
 }
-/* .inputItem{
-    width: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-} */
 .btn{
     width: 80px;
     height: 30px;

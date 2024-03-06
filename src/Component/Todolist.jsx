@@ -21,18 +21,20 @@ const Todolist = () => {
         setTodo(copyTodo);
     }
 
+    // 수정 모드로 변경하고 해당 항목을 수정할 수 있도록 하는 함수
     const edit = (index) => {
         let copyTodo = [...todo];
-        setTodoIndex(index);
-        setText(todo[index]);
+        setTodoIndex(index); // 수정 모드 활성화
+        setText(todo[index]); // 수정할 값 설정
         console.log(copyTodo[index]);
     }
 
+    // 수정된 값을 저장하고 수정 모드를 비활성화하는 함수
     const save = () => {
         let copyTodo = [...todo];
-        copyTodo[todoIndex] = text;
+        copyTodo[todoIndex] = text; // 수정된 값 저장
         setTodo(copyTodo);
-        setTodoIndex(null);
+        setTodoIndex(null); // 수정 모드 비활성화
     }
 
     return (
@@ -59,6 +61,8 @@ const Todolist = () => {
                             )}
                         </div>
                         <div>
+                            {/* /수정 버튼을 클릭하면 해당 항목이 수정 모드로 전환되고,
+                                다시 한 번 더 클릭하면 수정 모드가 해제됩니다. */}
                             <button className={styles.btn} onClick={() => {
                                 todoIndex === index ? setTodoIndex(null) : edit(index);
                             }}>

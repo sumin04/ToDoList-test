@@ -5,41 +5,35 @@ import styles from './Todolist.module.css';
 const Todolist = () => {
     const [text, setText] = useState('');
     const [todo, setTodo] = useState([]);
-    
-    // const [show, toggleShow] = useState(false);
+    const [todoIndex, setTodoIndex] = useState(null); // 선택한 인덱스를 저장할 상태
 
     const add = () => {
         setText('');
-        let copyTodo = [...todo]
-        copyTodo.push(text)
-        setTodo(copyTodo)
-        console.log("추가", todo)
+        let copyTodo = [...todo];
+        copyTodo.push(text);
+        setTodo(copyTodo);
+        console.log("추가", todo);
     }
+
     const del = (index) => {
-        let copyTodo = [...todo]
-        copyTodo.splice(index,1)
-        setTodo(copyTodo)
+        let copyTodo = [...todo];
+        copyTodo.splice(index,1);
+        setTodo(copyTodo);
     }
+
     const edit = (index) => {
-        let copyTodo = [...todo]
-
-        // console.log('변경', todo);
-        console.log(copyTodo[index])
+        let copyTodo = [...todo];
+        setTodoIndex(index);
+        setText(todo[index]);
+        console.log(copyTodo[index]);
     }
 
-    // if(false) { //수정모드임 ㅅㄱ
-    //     return (
-    //         <div className={styles.edit}>
-    //             <input 
-    //             type="text"
-    //             placeholder='수정할 값 입력'
-    //             />
-    //             <button>적용</button>
-    //         </div>
-    //     );
-    // }
-
-    const [show, toggleShow] = useState(false);
+    const save = () => {
+        let copyTodo = [...todo];
+        copyTodo[todoIndex] = text;
+        setTodo(copyTodo);
+        setTodoIndex(null);
+    }
 
     return (
         <div className={styles.div}>
@@ -47,27 +41,30 @@ const Todolist = () => {
             <div>{
                     todo.map((item, index) => (
                     <div className={styles.valueBox} key={index}>
-                        {/* 나중에 문자열로 잘라보기 */}
+                        <p>{item}</p>
+                        {todoIndex === index ? (
+                            <input 
+                            type='text'
+                            onChange={(e) => setText(e.target.value)}
+                            value={text}
+                            maxLength={10}
+                            autoFocus
+                            />
+                        ) : (
+                            <></>
+                        )}
                         <div>
-                            <p>{item}</p>
-                            {show && <input type='text'></input>}
-                            {show && <button>저장</button>}
+                            {todoIndex === index && (
+                                <button onClick={() => save()}>저장</button>
+                            )}
                         </div>
-                        
                         <div>
-                            <button className={styles.btn}
-                                onClick={() => {
-                                    toggleShow(!show)
-                                    edit(index)
-                                    console.log("수정/돌아가기", index)
-                                }}
-                            >
-                                {show ? "돌아가기" : "수정"}
+                            <button className={styles.btn} onClick={() => {
+                                todoIndex === index ? setTodoIndex(null) : edit(index);
+                            }}>
+                                {todoIndex === index ? "돌아가기" : "수정"}
                             </button>
-
-                            <button className={styles.btn} onClick={() => {del(index)
-                            console.log("버튼", index)
-                            }}>삭제</button>
+                            <button className={styles.btn} onClick={() => del(index)}>삭제</button>
                         </div>
                     </div>
                     ))

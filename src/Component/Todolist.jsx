@@ -4,11 +4,12 @@ import styles from './Todolist.module.css';
 
 const Todolist = () => {
     const [text, setText] = useState('');
+    const [textTrans, setTextTrans] = useState('');
     const [todo, setTodo] = useState([]);
     const [todoIndex, setTodoIndex] = useState(null); // 선택한 인덱스를 저장할 상태
 
     const add = () => {
-        setText('');
+        setText(''); // 비동기
         let copyTodo = [...todo];
         copyTodo.push(text);
         setTodo(copyTodo);
@@ -25,14 +26,14 @@ const Todolist = () => {
     const edit = (index) => {
         let copyTodo = [...todo];
         setTodoIndex(index); // 수정 모드 활성화
-        setText(todo[index]); // 수정할 값 설정
+        setTextTrans(todo[index]); // 수정할 값 설정
         console.log(copyTodo[index]);
     }
 
     // 수정된 값을 저장하고 수정 모드를 비활성화하는 함수
     const save = () => {
         let copyTodo = [...todo];
-        copyTodo[todoIndex] = text; // 수정된 값 저장
+        copyTodo[todoIndex] = textTrans; // 수정된 값 저장
         setTodo(copyTodo);
         setTodoIndex(null); // 수정 모드 비활성화
     }
@@ -44,11 +45,12 @@ const Todolist = () => {
                     todo.map((item, index) => (
                     <div className={styles.valueBox} key={index}>
                         <p>{item}</p>
+                        {/* {조건(<태그>) : (</태그>)} */}
                         {todoIndex === index ? (
                             <input 
                             type='text'
-                            onChange={(e) => setText(e.target.value)}
-                            value={text}
+                            onChange={(e) => setTextTrans(e.target.value)}
+                            value={textTrans}
                             maxLength={10}
                             autoFocus
                             />
@@ -57,7 +59,7 @@ const Todolist = () => {
                         )}
                         <div>
                             {todoIndex === index && (
-                                <button onClick={() => save()}>저장</button>
+                                <button className={styles.btn} onClick={() => save()}>저장</button>
                             )}
                         </div>
                         <div>
